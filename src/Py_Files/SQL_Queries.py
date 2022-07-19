@@ -9,20 +9,20 @@ S_TABLE = CONSTANTS.SALE_TABLE
 I_TABLE = CONSTANTS.ITEM_TABLE
 
 
-def DB():
-    return mysql.connector.connect(host=CONSTANTS.HOST, user=CONSTANTS.USER,
-                                   password=CONSTANTS.PASSWORD, database=CONSTANTS.DATABASE)
+
 
 
 def Push_To_Any(Table, Attributes, Values_List):
-    My_Cursor = DB()
-    My_Cursor = My_Cursor.cursor()
+    DB = mysql.connector.connect(host=CONSTANTS.HOST, user=CONSTANTS.USER,
+                                   password=CONSTANTS.PASSWORD, database=CONSTANTS.DATABASE)
+    My_Cursor = DB.cursor()
     Values_String = Value_List_To_String(Values_List)
     sql = f"insert into {Table} ({Attributes}) values ({Values_String})"
     print(sql)
     My_Cursor.execute(sql)
-    My_Cursor.commit()
+    DB.commit()
     My_Cursor.close()
+    DB.close()
 
 
 def Push_To_User_Table(Values_List):
@@ -59,27 +59,31 @@ def Get_Login(UserInfo):
 
 
 def Select_Any(Table, Select_List, Attribute_List, Value_List):
-    My_Cursor = DB()
-    My_Cursor = My_Cursor.cursor()
+    DB = mysql.connector.connect(host=CONSTANTS.HOST, user=CONSTANTS.USER,
+                                   password=CONSTANTS.PASSWORD, database=CONSTANTS.DATABASE)
+    My_Cursor = DB.cursor()
     Where = Format_Zip_List(Attribute_List, Value_List, "And")
     Selector = Format_Single_List(Select_List, ",")
     sql = f"Select {Selector} From {Table} Where {Where}"
     print(sql)
     My_Cursor.execute(sql)
-    returner = My_Cursor.fetchone()
+    returner = My_Cursor.fetchall()
     My_Cursor.close()
+    DB.close()
     return returner
 
 
 def Select_Where(Table, Where):
-    My_Cursor = DB()
-    My_Cursor = My_Cursor.cursor()
+    DB = mysql.connector.connect(host=CONSTANTS.HOST, user=CONSTANTS.USER,
+                                   password=CONSTANTS.PASSWORD, database=CONSTANTS.DATABASE)
+    My_Cursor = DB.cursor()
     Selector = "*"
     sql = f"Select {Selector} From {Table} Where {Where}"
     print(sql)
     My_Cursor.execute(sql)
-    returner = My_Cursor.fetchone()
+    returner = My_Cursor.fetchall()
     My_Cursor.close()
+    DB.close()
     return returner
 
 
@@ -88,13 +92,15 @@ def Select_Item_Where(Where):
 
 
 def Select_All(Table):
-    My_Cursor = DB()
-    My_Cursor = My_Cursor.cursor()
+    DB = mysql.connector.connect(host=CONSTANTS.HOST, user=CONSTANTS.USER,
+                                   password=CONSTANTS.PASSWORD, database=CONSTANTS.DATABASE)
+    My_Cursor = DB.cursor()
     sql = f"Select * From {Table}"
     print(sql)
     My_Cursor.execute(sql)
     returner = My_Cursor.fetchall()
     My_Cursor.close()
+    DB.close()
     return returner
 
 
@@ -102,20 +108,21 @@ def Select_All_Items():
     Select_All(I_TABLE)
 
 
-# where cat like thing or cat like thing
 def Select_Like_Items(a):
-    My_Cursor = DB()
-    My_Cursor = My_Cursor.cursor()
-    sql = f"Select * From {I_TABLE} Where Name like %{a}% or Description like %{a}%"
+    DB = mysql.connector.connect(host=CONSTANTS.HOST, user=CONSTANTS.USER,
+                                   password=CONSTANTS.PASSWORD, database=CONSTANTS.DATABASE)
+    My_Cursor = DB.cursor()
+    sql = f'Select * From {I_TABLE} Where Name like "%{a}%" or Description like "%{a}%"'
     print(sql)
     My_Cursor.execute(sql)
     returner = My_Cursor.fetchall()
     My_Cursor.close()
+    DB.close()
     return returner
 
 
 def Description_Where(Descript):
-    return f"Name like %{Descript}% or Description like %{Descript}%"
+    return f'Name like "%{Descript}%" or Description like "%{Descript}%"'
 
 
 def Quantity_Where(Quanty):
@@ -124,18 +131,6 @@ def Quantity_Where(Quanty):
 
 def Price_Where(Price):
     return f"PRICE BETWEEN {Price[0]} AND {Price[1]}"
-
-# def Select_Like(Table, Select_List, Attribute_List, Value_List):
-#     My_Cursor = DB()
-#     My_Cursor = My_Cursor.cursor()
-#     Where = Format_Zip_List(Attribute_List, Value_List, "And")
-#     Selector = Format_Single_List(Select_List, ",")
-#     sql = f"Select {Selector} From {Table} Where {Category} like"
-#     print(sql)
-#     My_Cursor.execute(sql)
-#     returner = My_Cursor.fetchall()
-#     My_Cursor.close()
-#     return returner
 
 
 def Clean_Result(dirty):
@@ -165,4 +160,3 @@ def Format_Single_List(List, Delimiter):
     Returner = Returner[:-len(f" {Delimiter} ")]
     return (Returner)
 
-# Push_To_User_Table(["daboxmasta",	"matthew",	"henderson",	"daboxmasta@gmail.com",	123123,	123456790,	"100,200,300",	1])

@@ -1,7 +1,8 @@
-from PY_Files import SQL_Queries
+
+import SQL_Queries
 
 
-def Create(Item_Info):
+def ICreate(Item_Info):
     SQL_Queries.Push_To_ITEM_Table(Item_Info)
 
 
@@ -23,8 +24,10 @@ def Format_Where_Statement(Description, Quantity_Range, Price_Range):
     if Price_Range != "":
         Price_Range = SQL_Queries.Price_Where(Price_Range)
         Where_Statement += Delimiter
-    return Where_Statement[:len(Delimiter)]
+    print(Where_Statement[:-len(Delimiter)])
+    return Where_Statement[:-len(Delimiter)]
 
+ICreate(("Cloudy Beans", 69, 420, "asdasd", 5000))
 
 def Sell():
     pass
