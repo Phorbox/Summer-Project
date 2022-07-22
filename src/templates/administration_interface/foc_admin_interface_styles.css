@@ -1,0 +1,137 @@
+::selection {
+	background: dimgray;
+}
+
+html {
+	background-color: black;
+}
+
+.body-box {
+	display: flex;
+
+	flex-direction: column;
+
+	margin: 0px;
+
+	height: 100vh;
+	width: 100vw;
+
+	justify-content: center;
+	align-items: center;
+
+	font-family: arial;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 1px;
+
+	position: absolute;
+	top: -80px;
+}
+
+input[type=text], input[type=password] {
+	background-color: black;
+	border: none;
+	border-bottom: 1px solid white;
+	caret-color: white;
+
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+
+	padding-bottom: 10px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+
+	outline: none;
+}
+
+input[type=submit] {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	
+	border: 1px solid white;
+	background-color: black;
+
+	font-size: 12px;
+	color: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+}
+
+input[type=submit]:hover {
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+
+
+label {
+	font-size: 12px;
+	text-align: right;
+}
+
+.login-box {
+	display: grid;
+
+	column-gap: 40px;
+	row-gap: 8px;
+	
+	grid-template-columns: auto auto;
+	grid-template-rows: 30px 30px 30px 30px;
+}
+
+.login-status {
+	font-size: 12px;
+	color: black;
+	text-align: right;
+	
+	grid-column-start: 2;
+}
+
+.logo-text {
+	font-weight: normal;
+	text-align: center;
+	line-height: 1.40;
+}
+
+.sub-text {
+	font-size: 12px;
+}
+
+.logo-image {
+	justify-content: space-evenly;
+	display: flex;
+
+	width: 80px;
+	height: 80px;
+
+	transition-duration: .7s;
+}
+
+.logo-image:hover > #banana{
+	padding-left: 180px;
+}
+
+.logo-image:hover > #pepper{
+	padding-right: 140px;
+}
+
+img {
+	position: absolute;
+	transition-duration: .6s;
+}
+
+#banana {
+	z-index: 10;
+}
+
+#pepper {
+	z-index: 5;
+}
+
+
+
