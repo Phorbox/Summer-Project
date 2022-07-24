@@ -6,43 +6,337 @@ html {
 	background-color: black;
 }
 
+div {
+	font-family: inherit;
+	color: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+}
+
+button {
+	font-size: 12px;
+	font-family: inherit;
+	color: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+
+	border: 1px solid white;
+	background-color: black;
+
+	width: 100px;
+	height: 30px;
+	
+	margin: 18px;
+	padding: 0px;
+}
+
+button:hover {
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+
+img {
+	padding: 18px;
+}
+
 .body-box {
 	display: flex;
 
-	flex-direction: row;
+	flex-direction: column;
 
 	margin: 0px;
 
 	height: 100vh;
-	width: 100vw;
-
-	justify-content: center;
-	align-items: center;
 
 	font-family: arial;
 	color: white;
 	font-weight: bold;
 	letter-spacing: 1px;
-	
-	column-gap: 80px;
+
+	justify-content: center;
+	align-content: center;
+
+	overflow: hidden;
 }
 
-.boxy-button {
-	border: 1px solid white;
-	background-color: black;
+.top-bar {
+	display: flex;
+
+	width: 100%;
+	
+	justify-content: space-between;
+	align-items: center;
 
 	font-size: 12px;
-	color: inherit;
-	font-family: inherit;
-	font-weight: inherit;
-	letter-spacing: inherit;
-
-	width: 100px;
-	height: 30px;
 }
 
-.boxy-button:hover {
-	background-color: white;
-	color: black;
-	cursor: pointer;
+.top-combo {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.menu-box {
+	display: flex;
+	flex-direction: row;
+	
+	height: 100%;
+	width: 200vw;
+
+	left: -50vw;
+	
+	margin: 0px;
+
+	position: relative;
+}
+
+.split-small {
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	align-content: center;
+
+	width: 0vw;
+}
+
+.split {
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	align-content: center;
+
+	width: 50vw;
+}
+
+.split-big {
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	align-content: center;
+
+	width: 100vw;
+}
+
+.split-grow {
+	display: flex;
+
+	flex-direction: column;
+
+	width: 50vw;
+
+	justify-content: center;
+	align-items: center;
+
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: become-double;
+}
+
+.split-un-grow {
+	display: flex;
+
+	flex-direction: column;
+
+	width: 50vw;
+
+	justify-content: center;
+	align-items: center;
+ 
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: double-to-normal;
+}
+
+.split-shrink {
+	display: flex;
+
+	flex-direction: column;
+
+	width: 50vw;
+
+	justify-content: center;
+	align-items: center;
+
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: become-nothing;
+}
+
+.split-un-shrink {
+	display: flex;
+
+	flex-direction: column;
+
+	width: 50vw;
+
+	justify-content: center;
+	align-items: center;
+
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: nothing-to-normal;
+}
+
+.navigation-row {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	align-items: center;
+
+	width: 100%;
+}
+
+.button-row {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	align-items: center;
+
+	width: 100%;
+	
+	pointer-events: none;
+	opacity: 0;
+}
+
+.button-row-show {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	align-items: center;
+
+	width: 100%;
+
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: fade-in;
+	
+	pointer-events: all;
+}
+
+.button-row-hide {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	align-items: center;
+
+	width: 100%;
+
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: fade-out;
+	
+	pointer-events: none;
+}
+
+#left-navigation, right-navigation {
+	justify-content: center;
+}
+
+#spacer {
+	width: 32px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.back-button {
+	width: 32px;
+	font-size: 14px;
+	opacity: 0;
+	
+	pointer-events: none;
+}
+
+.back-button-show {
+	width: 32px;
+	font-size: 14px;
+	opacity: 0;
+
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: fade-in;
+}
+
+.back-button-hide {
+	width: 32px;
+	font-size: 14px;
+	opacity: 0;
+
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: fade-out;
+}
+
+.button-to-title {
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: borderless;
+
+	pointer-events: none;
+}
+
+.title-to-button {
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+	animation-name: bordermore;
+}
+
+
+@keyframes borderless {
+	0% {
+		border: 1px solid white;
+		border-bottom: 1px solid white;
+	}
+	100% {
+		border: 1px solid transparent;
+		border-bottom: 1px solid white;
+	}
+}
+
+@keyframes bordermore {
+	0% {
+		border: 1px solid transparent;
+		border-bottom: 1px solid white;
+	}
+	100% {
+		border: 1px solid white;
+		border-bottom: 1px solid white;
+	}
+}
+
+@keyframes fade-in {
+	0% { opacity: 0; }
+	100% {opacity: 1; }
+}
+
+@keyframes fade-out {
+	0% { opacity: 1; }
+	100% {opacity: 0; }
+}
+
+@keyframes become-double {
+	0% { width: 50vw; }
+	100% { width: 100vw; }
+}
+
+@keyframes become-nothing {
+	0% { width: 50vw; }
+	100% { width: 0vw; }
+}
+
+@keyframes double-to-normal {
+	0% { width: 100vw; }
+	100% { width: 50vw; }
+}
+
+@keyframes nothing-to-normal {
+	0% { width: 0vw; }
+	100% { width: 50vw; }
 }
