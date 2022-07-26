@@ -1,4 +1,3 @@
-
 import SQL_Queries
 
 
@@ -7,12 +6,12 @@ def ICreate(Item_Info):
 
 
 def Get_Items(Description="", Quantity_Range="", Price_Range=""):
-    Where_Statement = Format_Where_Statement(
+    Where_Statement = Format_Search_Statement(
         Description, Quantity_Range, Price_Range)
     return SQL_Queries.Select_Item_Where(Where_Statement)
 
 
-def Format_Where_Statement(Description, Quantity_Range, Price_Range):
+def Format_Search_Statement(Description, Quantity_Range, Price_Range):
     Where_Statement = ""
     Delimiter = " and "
     if Description != "":
@@ -27,11 +26,11 @@ def Format_Where_Statement(Description, Quantity_Range, Price_Range):
     print(Where_Statement[:-len(Delimiter)])
     return Where_Statement[:-len(Delimiter)]
 
-ICreate(("Cloudy Beans", 69, 420, "asdasd", 5000))
-
-def Sell():
-    pass
-
+def Sell(Product_ID, Quantity):
+    Updater = SQL_Queries.Select_Item_Where(f"ID = {Product_ID}")
+    Updater -= Quantity
+    SQL_Queries.Update_Field()
+    
 
 def Restock():
     pass

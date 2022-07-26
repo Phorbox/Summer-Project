@@ -160,3 +160,26 @@ def Format_Single_List(List, Delimiter):
     Returner = Returner[:-len(f" {Delimiter} ")]
     return (Returner)
 
+# Update_Field Updates a field in a row in a table, Use the ID to select the item
+# Table is the Table (user, product, discount, sales)
+# Attribute_List is a list of fields to update
+# Value_List is a list of values for the fields 
+# ID of the row on that table
+
+def Update_Field(Table,Attribute_List, Value_List,ID):
+    DB = mysql.connector.connect(host=CONSTANTS.HOST, user=CONSTANTS.USER,
+                                   password=CONSTANTS.PASSWORD, database=CONSTANTS.DATABASE)
+    My_Cursor = DB.cursor()
+    update = f"update {Table}"
+    setter = "set " + Format_Zip_List([Attribute_List], [Value_List],",")
+    where = f'Where ID = {ID}'
+    sql  = f"{update} {setter} {where}"
+    
+    My_Cursor.execute(sql)
+    DB.commit()
+    My_Cursor.close()
+    DB.close()
+
+
+def Update_Item(Field,New,ID):
+    pass

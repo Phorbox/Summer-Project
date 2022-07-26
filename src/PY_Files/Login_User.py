@@ -1,10 +1,7 @@
 # from PY_Files
-import SQL_Queries
-import CONSTANTS
+from PY_Files import *
 
 
-def Login_User(Username, Password):
-    return SQL_Queries.Get_Login([Username, Password])
+def Login_User(Credentials):
+    return SQL_Queries.Get_Login(Credentials)
 
-
-print(Login_User("daboxmasta", "123123"))

@@ -1,19 +1,24 @@
 from flask import Flask, jsonify, request, render_template, send_from_directory, redirect, url_for, session, flash
-import PY_Files 
-
+from PY_Files import Items,Login_User,SQL_Queries,CONSTANTS
 
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 
-# Connect to database
-
-# DB = mysql.connector.connect(host=CONSTANTS.HOST, user=CONSTANTS.USER,
-#                              password=CONSTANTS.PASSWORD, database=CONSTANTS.DATABASE)
-
 ## Home Page ##
-@app.route("/")
+
+
+@app.route("/", methods=['GET', 'POST'])
 def login():
+    if 'UID' in session:
+        return redirect(url_for('administration_interface/foc_admin_interface_login.html'))
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        Credentials=[]
+        Credentials.append(request.form['username'])
+        Credentials.append(request.form['password'])
+
+        account=Login_User.Login_User()
+        print (account)
     # print(session["UID"])
 
     # if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
@@ -35,6 +40,6 @@ def login():
     #         return redirect(url_for('homepage'))
 
     # # Show the login form with message (if any)
-    return render_template('login.html')
+    return render_template('administration_interface/foc_admin_interface_login.html')
 
-app.run(debug=True)
+app.run(debug = True)
