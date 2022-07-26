@@ -26,10 +26,46 @@
 				</div>
 
 				<div class="button-row" id="left-sub-buttons">
-					<button>USER</button>
-					<button>ADDRESS</button>
-					<button>DISCOUNT</button>
-					<button>ITEM</button>
+					<button id="user-add">USER</button>
+					<button id="address-add">ADDRESS</button>
+					<button id="discount-add">DISCOUNT</button>
+					<button id="item-add">ITEM</button>
+				</div>
+
+				<div class="multi-input-container">
+					<form class="input-box" id="user-add-form">
+						<input id="username" type="text">
+						<label>USERNAME</label>
+						<input id="password" type="text">
+						<label>PASSWORD</label>
+						<input type="submit" value="SUBMIT">
+					</form>
+
+					<form class="input-box" id="address-add-form">
+						<input id="address" type="text">
+						<label>ADDRESS</label>
+						<input type="submit" value="SUBMIT">
+					</form>
+
+					<form class="input-box" id="discount-add-form">
+						<input id="code" type="text">
+						<input id="percent-off" type="text">
+						<label>CODE</label>
+						<label>PERCENT-OFF</label>
+						<input type="submit" id="double-sub" value="SUBMIT">
+					</form>
+
+					<form class="input-box" id="item-add-form">
+						<input id="item-name" type="text">
+						<label id="double-me">NAME</label>
+						<input id="quantity" type="text">
+						<input id="item-number" type="text">
+						<label>QUANTITY</label>
+						<label>ITEM-NUMBER</label>
+						<input id="item-description" type="text">
+						<label id="double-me">DESCRIPTION</label>
+						<input type="submit" id="double-sub" value="SUBMIT">
+					</form>
 				</div>
 			</div>
 
@@ -43,11 +79,27 @@
 
 
 				<div class="button-row" id="right-sub-buttons">
-					<button>E-MAIL</button>
-					<button>ITEM</button>
-					<button>ORDER</button>
-					<button>USER</button>
+					<button id="e-mail-lookup">E-MAIL</button>
+					<button id="item-lookup">ITEM</button>
+					<button id="order-lookup">ORDER</button>
+					<button id="user-lookup">USER</button>
 				</div>
+
+
+				<form class="input-box" id="right-input-box">
+					<input id="search-key" type="text">
+					<label>SEARCH KEY</label>
+					<input type="submit" value="SEARCH">
+				</form>
+				
+				<div class="output">
+				<p class="output-title">RESULTS</p>
+				<div class="output-box">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed<br>
+					do eiusmod tempor incididunt ut labore et dolore magna<br>
+
+				</div>
+			</div>
 			</div>
 
 			<div class="split" id="right-blank"></div>
