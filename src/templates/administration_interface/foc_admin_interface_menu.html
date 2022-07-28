@@ -2,17 +2,21 @@
 <html>
 	<head>
 		<title>foods of color</title>
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-		<link rel="stylesheet" href="foc_admin_menu_styles.css">
+		<link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
+		<link rel="stylesheet" href="static/css/foc_admin_menu_styles.css">
 	</head>
 
 	<body class="body-box">
 		<div class="top-bar">
 			<div class="top-combo">
-				<img src="foods_of_color_logo/foods_of_color_logo_small.png">
+				<img src="static/foods_of_color_logo/foods_of_color_logo_small.png">
 				<p>INTERNET COMMERCE ADMINISTRATION SYSTEM</p>
 			</div>
-			<button id="log-out">LOG OUT</button>
+			<nav>
+				<ul class="nav nav-pills pull-right">
+				  <li role="presentation" class="active"><a href="/logout">Logout</a></li>
+				</ul>
+			  </nav>
 		</div>
 		<div class="menu-box">
 			<div class="split" id="left-blank"></div>
@@ -104,7 +108,7 @@
 
 			<div class="split" id="right-blank"></div>
 
-			<script src="foc_admin_menu_behavior.js"></script>
+			<script src="static/js/foc_admin_menu_behavior.js"></script>
 		</div>
 	</body>
 
