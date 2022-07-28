@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, render_template, send_from_directory, redirect, url_for, session, flash
-from PY_Files import Items,Login_User,SQL_Queries,CONSTANTS
+from PY_Files.SQL_Queries import Get_Login
 
 
 app = Flask(__name__)
@@ -10,17 +10,19 @@ app.secret_key = 'super secret key'
 
 @app.route("/", methods=['GET', 'POST'])
 def login():
+
     if 'UID' in session:
         return redirect(url_for('administration_interface/foc_admin_interface_login.html'))
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        print(f"username:{request.form['username']} password:{request.form['password']}")
         Credentials=[]
         Credentials.append(request.form['username'])
         Credentials.append(request.form['password'])
 
-        account=Login_User.Login_User()
+        account=Get_Login(Credentials)
         print (account)
-    # print(session["UID"])
 
+    # print(session["UID"])
     # if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
     #     # Create variables for easy access
 

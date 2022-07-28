@@ -1,7 +1,7 @@
 # from PY_Files
-from PY_Files import *
+from PY_Files.SQL_Queries import Get_Login
 
 
 def Login_User(Credentials):
-    return SQL_Queries.Get_Login(Credentials)
+    return Get_Login(Credentials)
 
