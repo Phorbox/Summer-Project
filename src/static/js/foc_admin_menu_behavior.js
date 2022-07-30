@@ -191,10 +191,12 @@ function leftSubClicked(button_number) {
 	if ( button_number != left_selected ) {
 		left_subs[button_number].className = "button-to-title";
 		left_forms[button_number].className = "input-box-show";
+
 		
 		if ( left_selected != left_none ) { 
 			left_subs[left_selected].className = "title-to-button";
 			left_forms[left_selected].className = "input-box-hide"; 
+			left_forms[button_number].reset();
 		}
 	}
 	
