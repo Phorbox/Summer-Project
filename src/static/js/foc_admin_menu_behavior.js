@@ -36,6 +36,15 @@ const right_subs = [
 	document.querySelector("button#user-lookup"),
 ];
 
+const search_button_names = [
+	"SEARCH E-MAILS",
+	"SEARCH ITEMS",
+	"SEARCH ORDERS",
+	"SEARCH USERS"
+];
+
+let search_button = document.querySelector('input[value="SEARCH"]');
+
 
 
 let animation_state = 0;
@@ -191,6 +200,7 @@ function leftSubClicked(button_number) {
 	if ( button_number != left_selected ) {
 		left_subs[button_number].className = "button-to-title";
 		left_forms[button_number].className = "input-box-show";
+
 		
 		if ( left_selected != left_none ) { 
 			left_subs[left_selected].className = "title-to-button";
@@ -203,12 +213,14 @@ function leftSubClicked(button_number) {
 }
 
 function rightSubClicked(button_number) {
+
 	if ( right_selected == right_none ) { 
 		right_input_box.className = "input-box-show"; 
 	}
 
 	if ( button_number != right_selected ) {
 		right_subs[button_number].className = "button-to-title";
+		search_button.value = search_button_names[button_number];
 
 		if ( right_selected != right_none ) { 
 			right_subs[right_selected].className = "title-to-button"; 
