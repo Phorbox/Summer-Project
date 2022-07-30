@@ -24,7 +24,6 @@ def login():
         if account[1] == 1:
             session["user"] = account[0]
             session["admin"] = account[1]
-            flash('Login Sucessful. Welcome back ' + Credentials[0] + '!')
             return redirect(url_for('main_menu'))
 
         
@@ -37,7 +36,7 @@ def main_menu():
     if session.get("admin"):
         pass
 
-
+    if request.method
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
 
