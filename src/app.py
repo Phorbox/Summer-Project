@@ -1,5 +1,7 @@
+from cgi import print_form
 from flask import Flask, jsonify, request, render_template, send_from_directory, redirect, url_for, session, flash
 from PY_Files.Login_User import Login
+from PY_Files.Items import Get_Items
 
 
 app = Flask(__name__)
@@ -13,6 +15,7 @@ def login():
 
     if 'user' in session:
         return redirect(url_for('main_menu'))
+
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         Credentials=[request.form['username'],request.form['password']]
         account = Login(Credentials)
@@ -36,7 +39,14 @@ def main_menu():
     if session.get("admin"):
         pass
 
-    if request.method
+    # lookup item
+    if request.method == "POST":
+        print("here")
+        print(request.form["search_button"])
+    # if request.method == ["POST"] and 'Item_Search' in request.form:
+    #     Get_Items
+    #     pass
+
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
 
