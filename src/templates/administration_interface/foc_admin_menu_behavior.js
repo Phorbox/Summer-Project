@@ -10,7 +10,8 @@ let right_button = document.querySelector("button#right-button");
 let right_sub_buttons = document.querySelector("div#right-sub-buttons");
 let right_back_button = document.querySelector("button#right-back-button");
 
-let user_add_form = document.querySelector("form#user-add-form");
+let output = document.querySelector("div.output");
+//let user_add_form = document.querySelector("form#user-add-form");
 const left_forms = [
 	document.querySelector("form#user-add-form"),
 	document.querySelector("form#address-add-form"),
@@ -52,7 +53,12 @@ right_back_button.addEventListener("animationend", rightBackOff);
 left_blank.addEventListener("animationend", resetLayoutRight);
 right_blank.addEventListener("animationend", resetLayoutLeft);
 
+log_out = document.querySelector("button#log-out");
+log_out.addEventListener("click", logMeOut);
 
+top_bar = document.querySelector("div.top-bar");
+top_bar.addEventListener("animationend", resetBar);
+let top_bar_state = 1;
 
 for ( let i = 0; i < left_subs.length; i++ ) {
 	left_subs[i].addEventListener("click", function() { leftSubClicked( i ); });
@@ -113,6 +119,10 @@ function rightBackClicked() {
 		right_subs[right_selected].className = "title-to-button";
 		right_input_box.className = "input-box-hide";
 	}
+
+	output.className = "output-fade-out";
+	top_bar.className = "top-bar-normalized";
+	top_bar_state = 1;
 
 	button_showing = 0;
 	right_selected = right_none;
@@ -205,4 +215,20 @@ function rightSubClicked(button_number) {
 	}
 	
 	right_selected = button_number;
+}
+
+function logMeOut() {
+	console.log("logging out?");
+	top_bar.className = "top-bar-reduce";
+	top_bar_state = 0;
+}
+
+function resetBar() {
+	console.log("top-bar done");
+	if ( top_bar_state == 0 ) {
+		top_bar.className = "top-bar-small";
+		output.className = "output-fade-in";
+	} else {
+		top_bar.className = "top-bar";
+	}
 }
