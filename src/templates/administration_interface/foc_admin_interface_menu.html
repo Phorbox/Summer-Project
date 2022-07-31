@@ -38,16 +38,16 @@
 			</div>
 
 			<div class="multi-input-container">
-				<form class="input-box" id="user-add-form">
-					<input id="username" type="text">
-					<input id="password" type="text">
+				<form class="input-box" id="user-add-form" method="post">
+					<input id="username" name="username" type="text">
+					<input id="password" name="password" type="text">
 					<label>USERNAME</label>
 					<label>PASSWORD</label>
-					<input id="firstname" type="text">
-					<input id="lastname" type="text">
+					<input id="firstname" name="firstname" type="text">
+					<input id="lastname" name="lastname" type="text">
 					<label>FIRST NAME</label>
 					<label>LAST NAME</label>
-					<input id="double-me" type="text">
+					<input id="double-me" name="email" type="text">
 					<label id="double-me">E-MAIL ADDRESS</label>
 					<input type="submit" id="double-sub" value="SUBMIT">
 				</form>
