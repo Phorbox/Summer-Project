@@ -32,48 +32,53 @@
 
 			<div class="button-row" id="left-sub-buttons">
 				<button id="user-add">USER</button>
-				<button id="address-add">ADDRESS</button>
 				<button id="discount-add">DISCOUNT</button>
 				<button id="item-add">ITEM</button>
 			</div>
 
 			<div class="multi-input-container">
 				<form class="input-box" id="user-add-form" method="post">
-					<input id="username" name="username" type="text">
-					<input id="password" name="password" type="text">
+					<input id="username" name="username" type="text" required>
+					<input id="password" name="password" type="text" required>
 					<label>USERNAME</label>
 					<label>PASSWORD</label>
-					<input id="firstname" name="firstname" type="text">
-					<input id="lastname" name="lastname" type="text">
+					<input id="firstname" name="firstname" type="text" required>
+					<input id="lastname" name="lastname" type="text" required>
 					<label>FIRST NAME</label>
 					<label>LAST NAME</label>
-					<input id="double-me" name="email" type="text">
-					<label id="double-me">E-MAIL ADDRESS</label>
+					<input id="email" name="email" type="text" required>
+					<input id="phone" name="phone" type="text" required>
+					<label>E-MAIL ADDRESS</label>
+					<label>PHONE NUMBER</label>
 					<input type="submit" id="double-sub" value="SUBMIT">
 				</form>
 
-				<form class="input-box" id="address-add-form">
-					<input id="address" type="text">
-					<label>ADDRESS</label>
-					<input type="submit" value="SUBMIT">
-				</form>
-
-				<form class="input-box" id="discount-add-form">
-					<input id="code" type="text">
-					<input id="percent-off" type="text">
+				<form class="input-box" id="discount-add-form" method="post">
+					<input id="start-date" type="text" name="start-date" required>
+					<input id="end-date" type="text" name="end-date" required>
+					<label>START DATE</label>
+					<label>END DATE</label>
+					<input id="code" type="text" name="code" required>
+					<input id="percent-off" type="text" name="percent-off" required>
 					<label>CODE</label>
 					<label>PERCENT-OFF</label>
+					<input id="flat" type="text" name="flat" required>
+					<input id="discount-id" type="text" name="discount-id" required>
+					<label>FLAT</label>
+					<label>DISCOUNT ID</label>
 					<input type="submit" id="double-sub" value="SUBMIT">
 				</form>
 
-				<form class="input-box" id="item-add-form">
-					<input id="item-name" type="text">
-					<label id="double-me">NAME</label>
-					<input id="quantity" type="text">
-					<input id="item-number" type="text">
+				<form class="input-box" id="item-add-form" method="post">
+					<input id="item-name" type="text" name="item-name" required>
+					<input id="image-name" type="text" name="image-name" required>
+					<label>NAME</label>
+					<label>IMAGE NAME</label>
+					<input id="quantity" type="text" name="quantity" required>
+					<input id="item-number" type="text" name="item-id" required>
 					<label>QUANTITY</label>
 					<label>ITEM-NUMBER</label>
-					<input id="item-description" type="text">
+					<input id="item-description" type="text" name="item-description" required>
 					<label id="double-me">DESCRIPTION</label>
 					<input type="submit" id="double-sub" value="SUBMIT">
 				</form>

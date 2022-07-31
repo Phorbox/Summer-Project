@@ -400,6 +400,7 @@ label {
 
 #discount-add-form {
 	grid-template-columns: 239px 239px;
+	grid-template-rows: 30px 30px 30px 30px 30px 30px 30px;
 	z-index: 3;
 	position: absolute;
 }
@@ -411,7 +412,7 @@ label {
 	position: absolute;
 }
 
-#item-name, #item-description, #double-me, #double-sub {
+#item-description, #double-me, #double-sub {
 	grid-column-start: 1;
 	grid-column-end: 3;
 }
