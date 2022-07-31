@@ -388,7 +388,8 @@ label {
 }
 
 #user-add-form {
-	grid-template-rows: 30px 30px 30px 30px 30px;
+	grid-template-columns: 239px 239px;
+	grid-template-rows: 30px 30px 30px 30px 30px 30px 30px;
 	position: absolute;
 }
 
