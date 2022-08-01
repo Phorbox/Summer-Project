@@ -74,25 +74,30 @@ def main_menu():
 
 @app.route("/results", methods=['GET', 'POST'])
 def results():
+    Columns = 0
     print(session.get("search"))
     match session.get("search"):
         case 'SEARCH ITEMS':
             result = Select_Item(session.get('Key'))
+            Columns = 7
 
         case 'SEARCH USERS':
             result = Select_User(session.get('Key'))
+            Columns = 10
 
         case 'SEARCH E-MAILS':
             result = Select_Email(session.get('Key'))
+            Columns = 10
 
         case 'SEARCH ORDERS':
             result = Select_Order(session.get('Key'))
+            Columns = 8
 
     if request.method == "POST":
         session["Edit_ID"] = request.form.get("Edit")
         print(request.form)
         return redirect(url_for('edit'))
-    return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result)
+    return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result, Columns = Columns)
 
 
 @app.route("/edit", methods=['GET', 'POST'])
