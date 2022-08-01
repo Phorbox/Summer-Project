@@ -8,7 +8,16 @@
 </head>
 
 <body>
-	<div>{{content}}</div>
+	<div>
+		{%for x in Tuple_List%}
+		<!-- {%for y in x%}
+				<p class="fs-6 m-0 ps-2">{{y}}</p>
+			{%endfor%} -->
+
+		<p class="fs-6 m-0 ps-2">{{x}}</p>
+
+		{%endfor%}
+	</div>
 
 </body>
 

@@ -69,19 +69,18 @@ def main_menu():
     if request.method == "POST" and 'search-key' in request.form:
         match request.form.get("search_button"):
             case 'SEARCH ITEMS':
-                tuppy = Select_Item(request.form['search-key'])
+                result = Select_Item(request.form['search-key'])
 
             case 'SEARCH USERS':
-                tuppy = Select_User(request.form['search-key'])
+                result = Select_User(request.form['search-key'])
 
             case 'SEARCH E-MAILS':
-                tuppy = Select_Email(request.form['search-key'])
+                result = Select_Email(request.form['search-key'])
 
             case 'SEARCH ORDERS':
-                tuppy = Select_Order(request.form['search-key'])
+                result = Select_Order(request.form['search-key'])
 
-        result = Value_List_To_String(tuppy)
-        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+        return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result)
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
 
