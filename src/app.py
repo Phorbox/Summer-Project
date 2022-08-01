@@ -90,10 +90,13 @@ def results():
             case 'SEARCH ORDERS':
                 result = Select_Order(session.get('Key'))
 
-
+    if request.method == "POST":
+        return redirect(url_for('edit'))
     return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result)
 
-
+@app.route("/edit", methods=['GET', 'POST'])
+def edit():
+    return render_template('administration_interface/foc_admin_interface_edit.html')
 
 @app.route('/logout')
 def logout():
