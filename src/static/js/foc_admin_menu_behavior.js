@@ -215,8 +215,8 @@ function rightSubClicked(button_number) {
 
 	if ( button_number != right_selected ) {
 		right_subs[button_number].className = "button-to-title";
-		//search_button.value = search_button_names[button_number];
-		search_button.name = search_button_names[button_number];
+		search_button.value = search_button_names[button_number];
+		// search_button.name = search_button_names[button_number];
 
 		if ( right_selected != right_none ) { 
 			right_subs[right_selected].className = "title-to-button"; 

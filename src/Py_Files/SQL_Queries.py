@@ -105,6 +105,12 @@ def Select_Where(Table, Where):
 def Select_Item_Where(Where):
     return Select_Where(I_TABLE, Where)
 
+def Select_User_Where(Where):
+    return Select_Where(U_TABLE, Where)
+
+def Select_Order_Where(Where):
+    return Select_Where(S_TABLE, Where)
+
 
 def Select_All(Table):
     DB = mysql.connector.connect(host=HOST, user=USER,

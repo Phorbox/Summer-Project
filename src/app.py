@@ -47,51 +47,49 @@ def main_menu():
     if session.get("admin"):
         pass
 
-    # lookup item
-    if request.method == "POST":
-        print("here")
-        #print(request.form["search_button"])
-    # if request.method == ["POST"] and 'Item_Search' in request.form:
-    #     Get_Items
-    #     pass
-
     if request.method == "POST" and 'username' in request.form and 'password' in request.form and 'firstname' in request.form and 'lastname' in request.form and 'email' in request.form and 'phone' in request.form:
-        
-        new_user=[request.form['username'], request.form['firstname'], request.form['lastname'], request.form['email'], request.form['password'], request.form['phone'], "", 0]
+
+        new_user = [request.form['username'], request.form['firstname'], request.form['lastname'],
+                    request.form['email'], request.form['password'], request.form['phone'], "", 0]
         Push_To_User_Table(new_user)
         print("add user request recieved")
-        
+
     if request.method == "POST" and 'code' in request.form and 'percent-off' in request.form and 'discount-id' in request.form and 'start-date' in request.form and 'end-date' in request.form and 'flat' in request.form:
-        
-        new_discount=[request.form['discount-id'], request.form['flat'], request.form['percent-off'], request.form['start-date'], request.form['end-date'], request.form['code'] ]
+        print(request.form)
+        new_discount = [request.form['discount-id'], request.form['flat'], request.form['percent-off'],
+                        request.form['start-date'], request.form['end-date'], request.form['code']]
         Push_To_DISCOUNT_Table(new_discount)
         print("add discount request recieved")
-        
-    if request.method == "POST" and 'item-name' in request.form and 'quantity' in request.form and 'item-description' in request.form and 'item-id' in request.form and image-name in request.form:
-        
-        new_item=[request.form['item-name'], request.form['item-id'], request.form['quantity'], request.form['item-description'], request.form['image-name']]
+
+    if request.method == "POST" and 'item-name' in request.form and 'quantity' in request.form and 'item-description' in request.form and 'item-id' in request.form and 'image-name' in request.form:
+
+        new_item = [request.form['item-name'], request.form['item-id'],
+                    request.form['quantity'], request.form['item-description'], request.form['image-name']]
         Push_To_ITEM_Table(new_item)
         print("add item request recieved")
-        
-    if request.method == "POST" and 'SEARCH ITEMS' in request.form and 'search-key' in request.form:
-        tuppy = Select_Item_Where("NAME=\'" + request.form['search-key']+"\'")
-        result = Value_List_To_String( tuppy )
-        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
-    
-    if request.method == "POST" and 'SEARCH USERS' in request.form and 'search-key' in request.form:
-        tuppy = Select_User_Where("USER=\'" + request.form['search-key']+"\'")
-        result = Value_List_To_String( tuppy )
-        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
-        
-    if request.method == "POST" and 'SEARCH E-MAILS' in request.form and 'search-key' in request.form:
-        tuppy = Select_User_Where("EMAIL=\'" + request.form['search-key']+"\'")
-        result = Value_List_To_String( tuppy )
-        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
-        
-    if request.method == "POST" and 'SEARCH ORDERS' in request.form and 'search-key' in request.form:
-        tuppy = Select_User_Where("ITEM=\'" + request.form['search-key']+"\'")
-        result = Value_List_To_String( tuppy )
-        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+
+    if request.method == "POST" and 'search-key' in request.form:
+        match request.form.get("search_button"):
+            case 'SEARCH ITEMS':
+                tuppy = Select_Item_Where(f"NAME={request.form['search-key']}")
+                result = Value_List_To_String(tuppy)
+                return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+
+            case 'SEARCH USERS':
+                tuppy = Select_User_Where(f"USER={request.form['search-key']}")
+                result = Value_List_To_String(tuppy)
+                return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+
+            case 'SEARCH E-MAILS':
+                tuppy = Select_User_Where(f"EMAIL={request.form['search-key']}")
+                result = Value_List_To_String(tuppy)
+                return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+
+            case 'SEARCH ORDERS':
+                tuppy = Select_User_Where(f"ITEM={request.form['search-key']}")
+                result = Value_List_To_String(tuppy)
+                return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
 
