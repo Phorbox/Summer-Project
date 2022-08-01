@@ -10,11 +10,9 @@ let right_button = document.querySelector("button#right-button");
 let right_sub_buttons = document.querySelector("div#right-sub-buttons");
 let right_back_button = document.querySelector("button#right-back-button");
 
-let output = document.querySelector("div.output");
-//let user_add_form = document.querySelector("form#user-add-form");
+
 const left_forms = [
 	document.querySelector("form#user-add-form"),
-	document.querySelector("form#address-add-form"),
 	document.querySelector("form#discount-add-form"),
 	document.querySelector("form#item-add-form"),
 ];
@@ -24,7 +22,6 @@ let right_input_box = document.querySelector("form#right-input-box");
 
 const left_subs = [
 	document.querySelector("button#user-add"),
-	document.querySelector("button#address-add"),
 	document.querySelector("button#discount-add"),
 	document.querySelector("button#item-add")
 ];
@@ -62,8 +59,6 @@ right_back_button.addEventListener("animationend", rightBackOff);
 left_blank.addEventListener("animationend", resetLayoutRight);
 right_blank.addEventListener("animationend", resetLayoutLeft);
 
-//log_out = document.querySelector("ul.nav nav-pills pull-right");
-//log_out.addEventListener("click", logMeOut);
 
 top_bar = document.querySelector("div.top-bar");
 top_bar.addEventListener("animationend", resetBar);
@@ -124,14 +119,14 @@ function rightBackClicked() {
 	right_back_button.className = "back-button-hide";
 	right_sub_buttons.className = "button-row-hide";
 	right_button.className = "title-to-button";
-	if ( right_selected != left_none ) {
+	if ( right_selected != right_none ) {
 		right_subs[right_selected].className = "title-to-button";
 		right_input_box.className = "input-box-hide";
 	}
 
-	output.className = "output-fade-out";
-	top_bar.className = "top-bar-normalized";
-	top_bar_state = 1;
+	//output.className = "output-fade-out";
+	//top_bar.className = "top-bar-normalized";
+	//top_bar_state = 1;
 
 	button_showing = 0;
 	right_selected = right_none;
@@ -220,7 +215,8 @@ function rightSubClicked(button_number) {
 
 	if ( button_number != right_selected ) {
 		right_subs[button_number].className = "button-to-title";
-		search_button.value = search_button_names[button_number];
+		//search_button.value = search_button_names[button_number];
+		search_button.name = search_button_names[button_number];
 
 		if ( right_selected != right_none ) { 
 			right_subs[right_selected].className = "title-to-button"; 
