@@ -534,6 +534,39 @@ input[type="submit"]:hover {
 
 
 
+
+#results-grid {
+	display: grid;
+	width: 90%;
+	padding-left: 5vw;
+	padding-top: 24px;
+
+	column-gap: 14px;
+	row-gap: 14px;
+
+grid-template-columns: repeat(7, auto);
+}
+
+.edit-button {
+	height: 20px;
+}
+
+.results-header {
+	border-bottom: 1px solid white;
+	width: 90%;
+	margin-left: 5vw;
+	margin-right: 5vw;
+	margin-top: 5vh;
+	font-size: 12px;
+	line-height: 2;
+}
+
+.result-piece {
+	//border-bottom: 1px solid white;
+}
+
+
+
 @keyframes borderless {
 	0% {
 		border: 1px solid white;
