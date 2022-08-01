@@ -5,10 +5,8 @@ from PY_Files.Items import Get_Items
 from PY_Files.SQL_Queries import Push_To_User_Table
 from PY_Files.SQL_Queries import Push_To_DISCOUNT_Table
 from PY_Files.SQL_Queries import Push_To_ITEM_Table
-from PY_Files.SQL_Queries import Select_Item_Where
 from PY_Files.SQL_Queries import Value_List_To_String
-from PY_Files.SQL_Queries import Select_User_Where
-from PY_Files.SQL_Queries import Select_Order_Where
+from PY_Files.Search import Select_Item, Select_Order, Select_User, Select_Email
 
 
 app = Flask(__name__)
@@ -71,25 +69,19 @@ def main_menu():
     if request.method == "POST" and 'search-key' in request.form:
         match request.form.get("search_button"):
             case 'SEARCH ITEMS':
-                tuppy = Select_Item_Where(f"NAME={request.form['search-key']}")
-                result = Value_List_To_String(tuppy)
-                return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+                tuppy = Select_Item(request.form['search-key'])
 
             case 'SEARCH USERS':
-                tuppy = Select_User_Where(f"USER={request.form['search-key']}")
-                result = Value_List_To_String(tuppy)
-                return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+                tuppy = Select_User(request.form['search-key'])
 
             case 'SEARCH E-MAILS':
-                tuppy = Select_User_Where(f"EMAIL={request.form['search-key']}")
-                result = Value_List_To_String(tuppy)
-                return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+                tuppy = Select_Email(request.form['search-key'])
 
             case 'SEARCH ORDERS':
-                tuppy = Select_User_Where(f"ITEM={request.form['search-key']}")
-                result = Value_List_To_String(tuppy)
-                return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+                tuppy = Select_Order(request.form['search-key'])
 
+        result = Value_List_To_String(tuppy)
+        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
 
