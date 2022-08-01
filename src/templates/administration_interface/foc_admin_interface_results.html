@@ -10,11 +10,14 @@
 <body>
 	<div>
 		{%for x in Tuple_List%}
-		<!-- {%for y in x%}
-				<p class="fs-6 m-0 ps-2">{{y}}</p>
-			{%endfor%} -->
 
-		<p class="fs-6 m-0 ps-2">{{x}}</p>
+		<p class="fs-6 m-0 ps-2">
+			<input name="search_button" type="submit" value="SEARCH">
+			{%for y in x%}
+				{{y}}
+			{%endfor%}</p>
+
+
 
 		{%endfor%}
 	</div>

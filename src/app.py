@@ -66,23 +66,33 @@ def main_menu():
         Push_To_ITEM_Table(new_item)
         print("add item request recieved")
 
-    if request.method == "POST" and 'search-key' in request.form:
-        match request.form.get("search_button"):
-            case 'SEARCH ITEMS':
-                result = Select_Item(request.form['search-key'])
+    if request.method == "POST" and 'search-key' in request.form and request.form.get("search_button") != "None":
+        session["search"] = request.form.get("search_button")
+        session["Key"] = request.form['search-key']
 
-            case 'SEARCH USERS':
-                result = Select_User(request.form['search-key'])
-
-            case 'SEARCH E-MAILS':
-                result = Select_Email(request.form['search-key'])
-
-            case 'SEARCH ORDERS':
-                result = Select_Order(request.form['search-key'])
-
-        return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result)
+        return redirect(url_for('results'))
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
+
+@app.route("/results", methods=['GET', 'POST'])
+def results():
+
+    match session.get("search"):
+            case 'SEARCH ITEMS':
+                result = Select_Item(session.get('Key'))
+
+            case 'SEARCH USERS':
+                result = Select_User(session.get('Key'))
+
+            case 'SEARCH E-MAILS':
+                result = Select_Email(session.get('Key'))
+
+            case 'SEARCH ORDERS':
+                result = Select_Order(session.get('Key'))
+
+
+    return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result)
+
 
 
 @app.route('/logout')
