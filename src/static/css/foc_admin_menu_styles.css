@@ -6,6 +6,10 @@ html {
 	background-color: black;
 }
 
+a:link, a:visited {
+	color: white;
+}
+
 body {
 	font-family: arial;
 	color: white;
@@ -533,8 +537,6 @@ input[type="submit"]:hover {
 }
 
 
-
-
 #results-grid {
 	display: grid;
 	width: 90%;
@@ -543,8 +545,6 @@ input[type="submit"]:hover {
 
 	column-gap: 14px;
 	row-gap: 14px;
-
-grid-template-columns: repeat(7, auto);
 }
 
 .edit-button {
@@ -559,10 +559,6 @@ grid-template-columns: repeat(7, auto);
 	margin-top: 5vh;
 	font-size: 12px;
 	line-height: 2;
-}
-
-.result-piece {
-	//border-bottom: 1px solid white;
 }
 
 
