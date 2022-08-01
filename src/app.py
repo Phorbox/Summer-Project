@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request, render_template, send_from_directory,
 from PY_Files.Login_User import Login
 from PY_Files.SQL_Queries import Push_To_User_Table, Push_To_ITEM_Table, Push_To_DISCOUNT_Table
 from PY_Files.Search import Select_Item, Select_Order, Select_User, Select_Email
-from PY_Files.Edit import Edit_Format
+from PY_Files.Edit import Edit_Format, Update_Switch
 
 
 app = Flask(__name__)
@@ -90,14 +90,26 @@ def results():
 
     if request.method == "POST":
         session["Edit_ID"] = request.form.get("Edit")
-        print(request.form)
+        
         return redirect(url_for('edit'))
     return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result)
 
 
 @app.route("/edit", methods=['GET', 'POST'])
 def edit():
-    Fields = Edit_Format(session.get("search"),session.get("Edit_ID"))
+    Table_Type = session.get("search")
+    Id = session.get("Edit_ID")[0] 
+    Fields = Edit_Format(Table_Type,Id)
+    
+    if request.method == "POST":
+        Attribute = []
+        Value = []
+        for Each in request.form:
+            Attribute.append(Each)
+            Value.append(request.form.get(Each))
+
+        Update_Switch(Table_Type,Attribute,Value,Id)
+        return redirect(url_for('main_menu'))
 
     return render_template('administration_interface/foc_admin_interface_edit.html', Attribute_List=Fields[0], Value_List=Fields[1], Ranger=range(len(Fields[0])))
 

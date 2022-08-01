@@ -1,4 +1,5 @@
 from PY_Files.SQL_Queries import Search_Item_Where,Search_User_Where,Search_Order_Where
+from PY_Files.SQL_Queries import Update_Item,Update_User,Update_Order
 
 USER_LIST = ['ID','USER', 'FIRST', 'LAST', 'EMAIL',
     'PASS', 'PHONE', 'CART', 'ADMINISTRATOR']
@@ -37,3 +38,14 @@ def Value_Switch(Edit_type,ID):
 
         case 'SEARCH ORDERS':
             return Search_Order_Where(f"ID = {ID}")[0]
+
+def Update_Switch(Edit_type,Field, New, ID):
+        match Edit_type:
+            case 'SEARCH ITEMS':
+                Update_Item(Field, New, ID)
+
+            case 'SEARCH USERS'|'SEARCH E-MAILS':
+                Update_User(Field, New, ID)
+
+            case 'SEARCH ORDERS':
+                Update_Order(Field, New, ID)

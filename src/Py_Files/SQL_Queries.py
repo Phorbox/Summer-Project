@@ -25,8 +25,6 @@ S_TABLE = SALE_TABLE
 I_TABLE = ITEM_TABLE
 
 
-
-
 def Push_To_Any(Table, Attributes, Values_List):
     DB = mysql.connector.connect(host=HOST, user=USER,
                                  password=PASSWORD, database=DATABASE)
@@ -105,8 +103,10 @@ def Select_Where(Table, Where):
 def Search_Item_Where(Where):
     return Select_Where(I_TABLE, Where)
 
+
 def Search_User_Where(Where):
     return Select_Where(U_TABLE, Where)
+
 
 def Search_Order_Where(Where):
     return Select_Where(S_TABLE, Where)
@@ -193,10 +193,10 @@ def Update_Field(Table, Attribute_List, Value_List, ID):
                                  password=PASSWORD, database=DATABASE)
     My_Cursor = DB.cursor()
     update = f"update {Table}"
-    setter = "set " + Format_Zip_List([Attribute_List], [Value_List], ",")
+    setter = "set " + Format_Zip_List(Attribute_List, Value_List, ",")
     where = f'Where ID = {ID}'
     sql = f"{update} {setter} {where}"
-
+    print(sql)
     My_Cursor.execute(sql)
     DB.commit()
     My_Cursor.close()
@@ -204,4 +204,12 @@ def Update_Field(Table, Attribute_List, Value_List, ID):
 
 
 def Update_Item(Field, New, ID):
-    pass
+    return Update_Field(I_TABLE, Field, New, ID)
+
+
+def Update_User(Field, New, ID):
+    return Update_Field(U_TABLE, Field, New, ID)
+
+
+def Update_Order(Field, New, ID):
+    return Update_Field(S_TABLE, Field, New, ID)
