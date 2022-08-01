@@ -66,17 +66,17 @@ def main_menu():
         Push_To_ITEM_Table(new_item)
         print("add item request recieved")
 
-    if request.method == "POST" and 'search-key' in request.form and request.form.get("search_button") != "None":
-        session["search"] = request.form.get("search_button")
-        session["Key"] = request.form['search-key']
+    if request.method == "POST" and 'search-key' in request.form and  "search_button" in request.form:
+            session["search"] = request.form.get("search_button")
+            session["Key"] = request.form['search-key']
 
-        return redirect(url_for('results'))
+            return redirect(url_for('results'))
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
 
 @app.route("/results", methods=['GET', 'POST'])
 def results():
-
+    print(session.get("search"))
     match session.get("search"):
             case 'SEARCH ITEMS':
                 result = Select_Item(session.get('Key'))
