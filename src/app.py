@@ -1,12 +1,9 @@
-from cgi import print_form
+from dataclasses import Field
 from flask import Flask, jsonify, request, render_template, send_from_directory, redirect, url_for, session, flash
 from PY_Files.Login_User import Login
-from PY_Files.Items import Get_Items
-from PY_Files.SQL_Queries import Push_To_User_Table
-from PY_Files.SQL_Queries import Push_To_DISCOUNT_Table
-from PY_Files.SQL_Queries import Push_To_ITEM_Table
-from PY_Files.SQL_Queries import Value_List_To_String
+from PY_Files.SQL_Queries import Push_To_User_Table, Push_To_ITEM_Table, Push_To_DISCOUNT_Table
 from PY_Files.Search import Select_Item, Select_Order, Select_User, Select_Email
+from PY_Files.Edit import Edit_Format
 
 
 app = Flask(__name__)
@@ -66,37 +63,44 @@ def main_menu():
         Push_To_ITEM_Table(new_item)
         print("add item request recieved")
 
-    if request.method == "POST" and 'search-key' in request.form and  "search_button" in request.form:
-            session["search"] = request.form.get("search_button")
-            session["Key"] = request.form['search-key']
+    if request.method == "POST" and 'search-key' in request.form and "search_button" in request.form:
+        session["search"] = request.form.get("search_button")
+        session["Key"] = request.form['search-key']
 
-            return redirect(url_for('results'))
+        return redirect(url_for('results'))
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
+
 
 @app.route("/results", methods=['GET', 'POST'])
 def results():
     print(session.get("search"))
     match session.get("search"):
-            case 'SEARCH ITEMS':
-                result = Select_Item(session.get('Key'))
+        case 'SEARCH ITEMS':
+            result = Select_Item(session.get('Key'))
 
-            case 'SEARCH USERS':
-                result = Select_User(session.get('Key'))
+        case 'SEARCH USERS':
+            result = Select_User(session.get('Key'))
 
-            case 'SEARCH E-MAILS':
-                result = Select_Email(session.get('Key'))
+        case 'SEARCH E-MAILS':
+            result = Select_Email(session.get('Key'))
 
-            case 'SEARCH ORDERS':
-                result = Select_Order(session.get('Key'))
+        case 'SEARCH ORDERS':
+            result = Select_Order(session.get('Key'))
 
     if request.method == "POST":
+        session["Edit_ID"] = request.form.get("Edit")
+        print(request.form)
         return redirect(url_for('edit'))
     return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result)
 
+
 @app.route("/edit", methods=['GET', 'POST'])
 def edit():
-    return render_template('administration_interface/foc_admin_interface_edit.html')
+    Fields = Edit_Format(session.get("search"),session.get("Edit_ID"))
+
+    return render_template('administration_interface/foc_admin_interface_edit.html', Attribute_List=Fields[0], Value_List=Fields[1], Ranger=range(len(Fields[0])))
+
 
 @app.route('/logout')
 def logout():

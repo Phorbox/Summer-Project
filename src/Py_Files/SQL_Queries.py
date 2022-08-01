@@ -102,13 +102,13 @@ def Select_Where(Table, Where):
     return returner
 
 
-def Select_Item_Where(Where):
+def Search_Item_Where(Where):
     return Select_Where(I_TABLE, Where)
 
-def Select_User_Where(Where):
+def Search_User_Where(Where):
     return Select_Where(U_TABLE, Where)
 
-def Select_Order_Where(Where):
+def Search_Order_Where(Where):
     return Select_Where(S_TABLE, Where)
 
 

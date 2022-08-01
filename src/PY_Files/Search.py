@@ -1,4 +1,4 @@
-from PY_Files.SQL_Queries import Select_Item_Where, Select_Order_Where, Select_User_Where
+from PY_Files.SQL_Queries import Search_Item_Where, Search_Order_Where, Search_User_Where
 
 USER_ATTRIBUTES = ['ID', 'USER', 'FIRST',
                    'LAST', 'PHONE', 'CART', 'ADMINISTRATOR']
@@ -13,21 +13,21 @@ ITEM_ATTRIBUTES = ['ID', 'NAME', 'QUANTITY',
 
 def Select_Item(Where):
     Where = Where_Construction(ITEM_ATTRIBUTES, Where)
-    return Select_Item_Where(Where)
+    return Search_Item_Where(Where)
 
 
 def Select_Order(Where):
     Where = Where_Construction(SALE_ATTRIBUTES, Where)
-    return Select_Order_Where(Where)
+    return Search_Order_Where(Where)
 
 
 def Select_User(Where):
     Where = Where_Construction(USER_ATTRIBUTES, Where)
-    return Select_User_Where(Where)
+    return Search_User_Where(Where)
 
 def Select_Email(Where):
     Where = Where_Construction(EMAIL_ATTRIBUTES, Where)
-    return Select_User_Where(Where)
+    return Search_User_Where(Where)
 
 
 def Where_Construction(Attribute, Key):

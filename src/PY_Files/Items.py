@@ -1,4 +1,4 @@
-from PY_Files.SQL_Queries import Push_To_ITEM_Table, Select_Item_Where, Description_Where, Price_Where, Select_Item_Where, Update_Field, Quantity_Where
+from PY_Files.SQL_Queries import Push_To_ITEM_Table, Search_Item_Where, Description_Where, Price_Where, Update_Field, Quantity_Where
 
 
 def ICreate(Item_Info):
@@ -8,7 +8,7 @@ def ICreate(Item_Info):
 def Get_Items(Description="", Quantity_Range="", Price_Range=""):
     Where_Statement = Format_Search_Statement(
         Description, Quantity_Range, Price_Range)
-    return Select_Item_Where(Where_Statement)
+    return Search_Item_Where(Where_Statement)
 
 
 def Format_Search_Statement(Description, Quantity_Range, Price_Range):
@@ -28,7 +28,7 @@ def Format_Search_Statement(Description, Quantity_Range, Price_Range):
 
 
 def Sell(Product_ID, Quantity):
-    Updater = Select_Item_Where(f"ID = {Product_ID}")
+    Updater = Search_Item_Where(f"ID = {Product_ID}")
     Updater -= Quantity
     Update_Field()
 
