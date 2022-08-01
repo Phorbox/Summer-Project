@@ -5,6 +5,10 @@ from PY_Files.Items import Get_Items
 from PY_Files.SQL_Queries import Push_To_User_Table
 from PY_Files.SQL_Queries import Push_To_DISCOUNT_Table
 from PY_Files.SQL_Queries import Push_To_ITEM_Table
+from PY_Files.SQL_Queries import Select_Item_Where
+from PY_Files.SQL_Queries import Value_List_To_String
+from PY_Files.SQL_Queries import Select_User_Where
+from PY_Files.SQL_Queries import Select_Order_Where
 
 
 app = Flask(__name__)
@@ -67,7 +71,26 @@ def main_menu():
         new_item=[request.form['item-name'], request.form['item-id'], request.form['quantity'], request.form['item-description'], request.form['image-name']]
         Push_To_ITEM_Table(new_item)
         print("add item request recieved")
+        
+    if request.method == "POST" and 'SEARCH ITEMS' in request.form and 'search-key' in request.form:
+        tuppy = Select_Item_Where("NAME=\'" + request.form['search-key']+"\'")
+        result = Value_List_To_String( tuppy )
+        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
     
+    if request.method == "POST" and 'SEARCH USERS' in request.form and 'search-key' in request.form:
+        tuppy = Select_User_Where("USER=\'" + request.form['search-key']+"\'")
+        result = Value_List_To_String( tuppy )
+        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+        
+    if request.method == "POST" and 'SEARCH E-MAILS' in request.form and 'search-key' in request.form:
+        tuppy = Select_User_Where("EMAIL=\'" + request.form['search-key']+"\'")
+        result = Value_List_To_String( tuppy )
+        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
+        
+    if request.method == "POST" and 'SEARCH ORDERS' in request.form and 'search-key' in request.form:
+        tuppy = Select_User_Where("ITEM=\'" + request.form['search-key']+"\'")
+        result = Value_List_To_String( tuppy )
+        return render_template('administration_interface/foc_admin_interface_results.html', content=result)
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
 
