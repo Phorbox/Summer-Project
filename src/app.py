@@ -9,7 +9,6 @@ from PY_Files.Edit import Edit_Format, Update_Switch
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 
-## Home Page ##
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -125,5 +124,6 @@ def logout():
     session.pop('user', None)
     return redirect(url_for('login'))
 
-
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080) 
+    # serve(app, host='0.0.0.0', port=80)
