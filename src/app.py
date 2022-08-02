@@ -44,21 +44,21 @@ def main_menu():
         new_user = [request.form['username'], request.form['firstname'], request.form['lastname'],
                     request.form['email'], request.form['password'], request.form['phone'], "", 0]
         Push_To_User_Table(new_user)
-        print("add user request recieved")
+        
 
     if request.method == "POST" and 'code' in request.form and 'percent-off' in request.form and 'discount-id' in request.form and 'start-date' in request.form and 'end-date' in request.form and 'flat' in request.form:
-        print(request.form)
+
         new_discount = [request.form['discount-id'], request.form['flat'], request.form['percent-off'],
                         request.form['start-date'], request.form['end-date'], request.form['code']]
         Push_To_DISCOUNT_Table(new_discount)
-        print("add discount request recieved")
+        
 
     if request.method == "POST" and 'item-name' in request.form and 'quantity' in request.form and 'item-description' in request.form and 'item-id' in request.form and 'image-name' in request.form:
 
         new_item = [request.form['item-name'], request.form['item-id'],
                     request.form['quantity'], request.form['item-description'], request.form['image-name']]
         Push_To_ITEM_Table(new_item)
-        print("add item request recieved")
+       
 
     if request.method == "POST" and 'search-key' in request.form and "search_button" in request.form:
         session["search"] = request.form.get("search_button")
@@ -88,7 +88,7 @@ def results():
         case 'SEARCH ORDERS':
             result = Select_Order(temp)
             Columns = 8
-    print(result)
+    
 
     if result == None:
         flash(f'No results for {temp}')

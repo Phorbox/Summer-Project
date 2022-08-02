@@ -23,7 +23,6 @@ def Format_Search_Statement(Description, Quantity_Range, Price_Range):
     if Price_Range != "":
         Price_Range = Price_Where(Price_Range)
         Where_Statement += Delimiter
-    print(Where_Statement[:-len(Delimiter)])
     return Where_Statement[:-len(Delimiter)]
 
 
