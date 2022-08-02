@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<div>
+	<form method = 'post'>
         {%for x in Ranger%}
 
         <p>
@@ -16,13 +16,13 @@
             {{Attribute_List[x]}}
             {{Value_List[x]}}
             {%if x > 0%}
-            <input id="password" name="password" type="text">
+            <input id="Password" name="{{Attribute_List[x]}}" value="{{Value_List[x]}}" type="text">
             {%endif%}
 
         </p>
         {%endfor%}
         <input type="submit" id="double-sub" value="SUBMIT">
-	</div>
+	</form>
 
 
 </body>
