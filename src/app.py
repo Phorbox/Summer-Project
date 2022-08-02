@@ -74,7 +74,6 @@ def main_menu():
 
 @app.route("/results", methods=['GET', 'POST'])
 def results():
-    print(session.get("search"))
     match session.get("search"):
         case 'SEARCH ITEMS':
             result = Select_Item(session.get('Key'))
@@ -87,6 +86,8 @@ def results():
 
         case 'SEARCH ORDERS':
             result = Select_Order(session.get('Key'))
+    
+
 
     if request.method == "POST":
         session["Edit_ID"] = request.form.get("Edit")
