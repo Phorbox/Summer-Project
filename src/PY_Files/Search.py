@@ -9,6 +9,8 @@ DISCOUNT_ATTRIBUTES = ['ID', 'PID_LIST',
 SALE_ATTRIBUTES = ['ID', 'UID', 'PID_LIST', 'DID_LIST', 'TOTAL']
 ITEM_ATTRIBUTES = ['ID', 'NAME', 'QUANTITY',
                    'PRICE', 'DESCRIPTION']
+                   
+ORDER_ATTRIBUTES = ['USER', 'NAME', 'QUANTITY']
 
 
 def Select_Item(Where):
@@ -17,7 +19,8 @@ def Select_Item(Where):
 
 
 def Select_Order(Where):
-    Where = Where_Construction(SALE_ATTRIBUTES, Where)
+    #There = "USER = \'" + Where + "\'"
+    Where = Where_Construction(ORDER_ATTRIBUTES, Where)
     return Search_Order_Where(Where)
 
 
