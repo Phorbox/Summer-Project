@@ -39,9 +39,6 @@ def main_menu():
     if not("user" in session):
         return redirect(url_for('login'))
 
-    if session.get("admin"):
-        pass
-
     if request.method == "POST" and 'username' in request.form and 'password' in request.form and 'firstname' in request.form and 'lastname' in request.form and 'email' in request.form and 'phone' in request.form:
 
         new_user = [request.form['username'], request.form['firstname'], request.form['lastname'],
@@ -74,24 +71,28 @@ def main_menu():
 
 @app.route("/results", methods=['GET', 'POST'])
 def results():
+    temp = session.get('Key')
     match session.get("search"):
         case 'SEARCH ITEMS':
-            result = Select_Item(session.get('Key'))
+            result = Select_Item(temp)
 
         case 'SEARCH USERS':
-            result = Select_User(session.get('Key'))
+            result = Select_User(temp)
 
         case 'SEARCH E-MAILS':
-            result = Select_Email(session.get('Key'))
+            result = Select_Email(temp)
 
         case 'SEARCH ORDERS':
-            result = Select_Order(session.get('Key'))
-    
+            result = Select_Order(temp)
+    print(result)
 
+    if result == None:
+        flash(f'No results for {temp}')
+        return redirect(url_for('main_menu'))
 
     if request.method == "POST":
         session["Edit_ID"] = request.form.get("Edit")
-        
+
         return redirect(url_for('edit'))
     return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result)
 
@@ -99,9 +100,9 @@ def results():
 @app.route("/edit", methods=['GET', 'POST'])
 def edit():
     Table_Type = session.get("search")
-    Id = session.get("Edit_ID")[0] 
-    Fields = Edit_Format(Table_Type,Id)
-    
+    Id = session.get("Edit_ID")[0]
+    Fields = Edit_Format(Table_Type, Id)
+
     if request.method == "POST":
         Attribute = []
         Value = []
@@ -109,7 +110,7 @@ def edit():
             Attribute.append(Each)
             Value.append(request.form.get(Each))
 
-        Update_Switch(Table_Type,Attribute,Value,Id)
+        Update_Switch(Table_Type, Attribute, Value, Id)
         return redirect(url_for('main_menu'))
 
     return render_template('administration_interface/foc_admin_interface_edit.html', Attribute_List=Fields[0], Value_List=Fields[1], Ranger=range(len(Fields[0])))

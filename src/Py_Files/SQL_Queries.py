@@ -97,6 +97,8 @@ def Select_Where(Table, Where):
     returner = My_Cursor.fetchall()
     My_Cursor.close()
     DB.close()
+    if returner == []:
+        return None
     return returner
 
 
