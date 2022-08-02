@@ -75,15 +75,19 @@ def results():
     match session.get("search"):
         case 'SEARCH ITEMS':
             result = Select_Item(temp)
+            Columns = 7
 
         case 'SEARCH USERS':
             result = Select_User(temp)
+            Columns = 10
 
         case 'SEARCH E-MAILS':
             result = Select_Email(temp)
+            Columns = 10
 
         case 'SEARCH ORDERS':
             result = Select_Order(temp)
+            Columns = 8
     print(result)
 
     if result == None:
@@ -94,7 +98,7 @@ def results():
         session["Edit_ID"] = request.form.get("Edit")
 
         return redirect(url_for('edit'))
-    return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result)
+    return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result, Columns = Columns)
 
 
 @app.route("/edit", methods=['GET', 'POST'])

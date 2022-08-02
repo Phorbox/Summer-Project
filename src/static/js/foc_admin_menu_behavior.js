@@ -41,7 +41,7 @@ const search_button_names = [
 ];
 
 let search_button = document.querySelector('input[value="SEARCH"]');
-
+let search_form = document.querySelector('form#right-input-box');
 
 
 let animation_state = 0;
@@ -220,6 +220,7 @@ function rightSubClicked(button_number) {
 
 		if ( right_selected != right_none ) { 
 			right_subs[right_selected].className = "title-to-button"; 
+			search_form.reset();
 		}
 	}
 	
