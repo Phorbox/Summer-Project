@@ -1,9 +1,10 @@
 from dataclasses import Field
 from flask import Flask, jsonify, request, render_template, send_from_directory, redirect, url_for, session, flash
 from PY_Files.Login_User import Login
-from PY_Files.SQL_Queries import Push_To_User_Table, Push_To_ITEM_Table, Push_To_DISCOUNT_Table
+from PY_Files.SQL_Queries import Push_To_User_Table, Push_To_ITEM_Table, Push_To_DISCOUNT_Table, Push_To_ORDER_Table
 from PY_Files.Search import Select_Item, Select_Order, Select_User, Select_Email
 from PY_Files.Edit import Edit_Format, Update_Switch
+
 
 
 app = Flask(__name__)
@@ -61,6 +62,7 @@ def main_menu():
         new_item = [request.form['item-name'], request.form['item-id'],
                     request.form['quantity'], request.form['item-description'], request.form['image-name']]
         Push_To_ITEM_Table(new_item)
+        #Push_To_ORDER_Table(["thaham", "Red Plum", 2])
         print("add item request recieved")
 
     if request.method == "POST" and 'search-key' in request.form and "search_button" in request.form:
@@ -91,7 +93,7 @@ def results():
 
         case 'SEARCH ORDERS':
             result = Select_Order(session.get('Key'))
-            Columns = 8
+            Columns = 4
 
     if request.method == "POST":
         session["Edit_ID"] = request.form.get("Edit")
