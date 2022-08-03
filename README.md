@@ -1,7 +1,8 @@
 # Summer Project
 
 
-
+Admin Login: Theers 
+Password: 123
 http://ec2-52-87-179-156.compute-1.amazonaws.com:8080/
 
 
