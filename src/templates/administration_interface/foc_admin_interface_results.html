@@ -8,12 +8,19 @@
 </head>
 
 <body>
-	<div>
+	<div class="top-bar-small">
+		<div class="top-combo">
+			<img src="static/foods_of_color_logo/foods_of_color_logo_small.png">
+			<p>INTERNET COMMERCE ADMINISTRATION SYSTEM</p>
+		</div>
+
+		<a href="/logout"><button>LOGOUT</button></a>
+	</div>
+	<div class="item-lookup-box">
 		<div class="results-header">RESULTS</div>
 		<form id="results-grid" style="grid-template-columns: repeat({{Columns}}, auto);" method="post">
 			{%for x in Tuple_List%}
 
-			
 				<input name="Edit" class="edit-button" type="submit" value="{{x[0]}}">
 				{%for y in x%}
 				<div class="result-piece">{{y}}</div>
@@ -22,8 +29,10 @@
 			{%endfor%}
 		</form>
 
-
-
+		<div class="button" id="look-item-back-button">
+			<button class="back-button" id="lookup-item-back-button">&lt;</button>
+			<a href="/main_menu"><button>&lt;</button></a>
+		</div>
 	</div>
 
 </body>
