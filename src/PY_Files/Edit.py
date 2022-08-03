@@ -8,6 +8,8 @@ DISCOUNT_LIST = ['ID','PID_LIST', 'FLAT', 'PERCENT', 'START', 'END', 'CODE']
 SALE_LIST = ['ID','UID', 'PID_LIST', 'DID_LIST', 'TOTAL']
 ITEM_LIST = ['ID','NAME', 'QUANTITY', 'PRICE', 'DESCRIPTION']
 
+ORDER_LIST = ['USER', 'NAME', 'QUANTITY']
+
 
 def Edit_Format(Edit_type, ID):
     # edit type to list
