@@ -547,6 +547,31 @@ input[type="submit"]:hover {
 	row-gap: 14px;
 }
 
+#Password {
+	font-size: 16px;
+	margin-bottom: 8px;
+	padding-top: 8px;
+}
+
+#edit-form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+}
+
+#edit-sub {
+	width: 120px;
+	height: 30px;
+}
+
+.spacer {
+	font-size: 12px;
+	padding: 12px;
+	width: 80%;
+}
+
 .edit-button {
 	height: 20px;
 }
