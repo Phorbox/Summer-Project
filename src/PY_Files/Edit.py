@@ -27,7 +27,7 @@ def Attribute_Switch(Edit_type):
             return USER_LIST
 
         case 'SEARCH ORDERS':
-            return SALE_LIST
+            return ORDER_LIST
 
 def Value_Switch(Edit_type,ID):
     
@@ -39,7 +39,7 @@ def Value_Switch(Edit_type,ID):
             return Search_User_Where(f"ID = {ID}")[0]
 
         case 'SEARCH ORDERS':
-            return Search_Order_Where(f"ID = {ID}")[0]
+            return Search_Order_Where(f"USER = '{ID}'")[0]
 
 def Update_Switch(Edit_type,Field, New, ID):
         match Edit_type:
