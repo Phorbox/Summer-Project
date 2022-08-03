@@ -5,29 +5,19 @@ USER = "summersingle"
 PASSWORD = "4kqE{`7Yz.FS;$Cf"
 DATABASE = "summer"
 
-USER_TABLE = f"{DATABASE}.USER_TABLE"
-ADDRESS_TABLE = f"{DATABASE}.ADDRESS_TABLE"
-DISCOUNT_TABLE = f"{DATABASE}.DISCOUNT_TABLE"
-SALE_TABLE = f"{DATABASE}.SALE_TABLE"
-ITEM_TABLE = f"{DATABASE}.ITEM_TABLE"
-
-ORDER_TABLE = f"{DATABASE}.ORDER_TABLE"
+U_TABLE = f"{DATABASE}.USER_TABLE"
+A_TABLE = f"{DATABASE}.ADDRESS_TABLE"
+D_TABLE = f"{DATABASE}.DISCOUNT_TABLE"
+S_TABLE = f"{DATABASE}.SALE_TABLE"
+I_TABLE = f"{DATABASE}.ITEM_TABLE"
+O_TABLE = f"{DATABASE}.ORDER_TABLE"
 
 USER_ATTRIBUTES = 'USER, FIRST, LAST, EMAIL, PASS, PHONE, CART, ADMINISTRATOR'
 ADDRESS_ATTRIBUTES = 'UID, NUMBER, STREET, STATE, ZIP'
 DISCOUNT_ATTRIBUTES = 'PID_LIST, FLAT, PERCENT, START, END, CODE'
 SALE_ATTRIBUTES = 'UID, PID_LIST, DID_LIST, TOTAL'
 ITEM_ATTRIBUTES = 'NAME, QUANTITY, PRICE, DESCRIPTION, IMAGE_NAME'
-
 ORDER_ATTRIBUTES = 'USER, NAME, QUANTITY'
-
-U_TABLE = USER_TABLE
-A_TABLE = ADDRESS_TABLE
-D_TABLE = DISCOUNT_TABLE
-S_TABLE = SALE_TABLE
-I_TABLE = ITEM_TABLE
-
-O_TABLE = ORDER_TABLE
 
 
 def Push_To_Any(Table, Attributes, Values_List):
@@ -221,4 +211,15 @@ def Update_User(Field, New, ID):
 
 
 def Update_Order(Field, New, ID):
-    return Update_Field(S_TABLE, Field, New, ID)
+    DB = mysql.connector.connect(host=HOST, user=USER,
+                                 password=PASSWORD, database=DATABASE)
+    My_Cursor = DB.cursor()
+    update = f"update {O_TABLE}"
+    setter = "set " + Format_Zip_List(Field, New, ",")
+    where = f'Where USER  = "{ID}"'
+    sql = f"{update} {setter} {where}"
+    print(sql)
+    My_Cursor.execute(sql)
+    DB.commit()
+    My_Cursor.close()
+    DB.close()

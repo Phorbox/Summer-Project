@@ -14,22 +14,33 @@ ORDER_ATTRIBUTES = ['USER', 'NAME', 'QUANTITY']
 
 
 def Select_Item(Where):
-    Where = Where_Construction(ITEM_ATTRIBUTES, Where)
+    if Where == "":
+        Where = " ID > -1"
+    else:
+        Where = Where_Construction(ITEM_ATTRIBUTES, Where)
     return Search_Item_Where(Where)
 
 
 def Select_Order(Where):
-    #There = "USER = \'" + Where + "\'"
-    Where = Where_Construction(ORDER_ATTRIBUTES, Where)
+    if Where == "":
+        Where = " QUANTITY > -1"
+    else:
+        Where = Where_Construction(ORDER_ATTRIBUTES, Where)
     return Search_Order_Where(Where)
 
 
 def Select_User(Where):
-    Where = Where_Construction(USER_ATTRIBUTES, Where)
+    if Where == "":
+        Where = " ID > -1"
+    else:
+        Where = Where_Construction(USER_ATTRIBUTES, Where)
     return Search_User_Where(Where)
 
 def Select_Email(Where):
-    Where = Where_Construction(EMAIL_ATTRIBUTES, Where)
+    if Where == "":
+        Where = " ID > -1"
+    else:
+        Where = Where_Construction(EMAIL_ATTRIBUTES, Where)
     return Search_User_Where(Where)
 
 

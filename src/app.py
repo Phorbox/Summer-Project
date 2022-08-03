@@ -23,7 +23,7 @@ def login():
         account = Login(Credentials)
 
         if account == None:
-            flash('Incorrect User information')
+            # flash('Incorrect User information')
             return render_template('administration_interface/foc_admin_interface_login.html')
 
         if account[1] == 1:
@@ -60,8 +60,10 @@ def main_menu():
         Push_To_ITEM_Table(new_item)
        
 
-    if request.method == "POST" and 'search-key' in request.form and "search_button" in request.form:
+    if request.method == "POST" and "search_button" in request.form:
         session["search"] = request.form.get("search_button")
+        print(request.form['search-key'])
+
         session["Key"] = request.form['search-key']
 
 
@@ -73,6 +75,7 @@ def main_menu():
 @app.route("/results", methods=['GET', 'POST'])
 def results():
     temp = session.get('Key')
+    print(temp)
     match session.get("search"):
         case 'SEARCH ITEMS':
             result = Select_Item(temp)
@@ -92,7 +95,7 @@ def results():
     
 
     if result == None:
-        flash(f'No results for {temp}')
+        # flash(f'No results for {temp}')
         return redirect(url_for('main_menu'))
 
     if request.method == "POST":
