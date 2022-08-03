@@ -8,20 +8,21 @@
 </head>
 
 <body>
-	<form method = 'post'>
+	<form id="edit-form" method = 'post'>
         {%for x in Ranger%}
 
-        <p>
+        <p class="spacer">
             
-            {{Attribute_List[x]}}
+            
             {{Value_List[x]}}
             {%if x > 0%}
             <input id="Password" name="{{Attribute_List[x]}}" value="{{Value_List[x]}}" type="text">
+	{{Attribute_List[x]}}
             {%endif%}
 
         </p>
         {%endfor%}
-        <input type="submit" id="double-sub" value="SUBMIT">
+        <input type="submit" id="edit-sub" value="SUBMIT">
 	</form>
 
 
