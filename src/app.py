@@ -96,7 +96,6 @@ def results():
 
     if request.method == "POST":
         session["Edit_ID"] = request.form.get("Edit")
-
         return redirect(url_for('edit'))
     return render_template('administration_interface/foc_admin_interface_results.html', Tuple_List=result, Columns = Columns)
 
@@ -104,7 +103,7 @@ def results():
 @app.route("/edit", methods=['GET', 'POST'])
 def edit():
     Table_Type = session.get("search")
-    Id = session.get("Edit_ID")[0]
+    Id = session.get("Edit_ID")
     Fields = Edit_Format(Table_Type, Id)
 
     if request.method == "POST":
@@ -126,5 +125,5 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080) 
-    # app.run(debug=True) 
+    # app.run(host='0.0.0.0', port=8080) 
+    app.run(debug=True) 
