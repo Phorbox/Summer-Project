@@ -13,11 +13,13 @@
 
         <p class="spacer">
             
-            
+            {%if x == 0%}
+            {{Attribute_List[x]}}
+            {%endif%}
             {{Value_List[x]}}
             {%if x > 0%}
             <input id="Password" name="{{Attribute_List[x]}}" value="{{Value_List[x]}}" type="text">
-	{{Attribute_List[x]}}
+            {{Attribute_List[x]}}
             {%endif%}
 
         </p>
