@@ -64,6 +64,7 @@ def main_menu():
         session["search"] = request.form.get("search_button")
         session["Key"] = request.form['search-key']
 
+
         return redirect(url_for('results'))
 
     return render_template('administration_interface/foc_admin_interface_menu.html')
