@@ -11,18 +11,23 @@ DISCOUNT_TABLE = f"{DATABASE}.DISCOUNT_TABLE"
 SALE_TABLE = f"{DATABASE}.SALE_TABLE"
 ITEM_TABLE = f"{DATABASE}.ITEM_TABLE"
 
+ORDER_TABLE = f"{DATABASE}.ORDER_TABLE"
+
 USER_ATTRIBUTES = 'USER, FIRST, LAST, EMAIL, PASS, PHONE, CART, ADMINISTRATOR'
 ADDRESS_ATTRIBUTES = 'UID, NUMBER, STREET, STATE, ZIP'
 DISCOUNT_ATTRIBUTES = 'PID_LIST, FLAT, PERCENT, START, END, CODE'
 SALE_ATTRIBUTES = 'UID, PID_LIST, DID_LIST, TOTAL'
 ITEM_ATTRIBUTES = 'NAME, QUANTITY, PRICE, DESCRIPTION, IMAGE_NAME'
 
+ORDER_ATTRIBUTES = 'USER, NAME, QUANTITY'
 
 U_TABLE = USER_TABLE
 A_TABLE = ADDRESS_TABLE
 D_TABLE = DISCOUNT_TABLE
 S_TABLE = SALE_TABLE
 I_TABLE = ITEM_TABLE
+
+O_TABLE = ORDER_TABLE
 
 
 def Push_To_Any(Table, Attributes, Values_List):
@@ -57,6 +62,8 @@ def Push_To_SALE_Table(Values_List):
 def Push_To_ITEM_Table(Values_List):
     Push_To_Any(I_TABLE, ITEM_ATTRIBUTES, Values_List)
 
+def Push_To_ORDER_Table(Values_List):
+    Push_To_Any(O_TABLE, ORDER_ATTRIBUTES, Values_List)
 
 def Value_List_To_String(Value_List):
     Returner = ""
@@ -111,7 +118,7 @@ def Search_User_Where(Where):
 
 
 def Search_Order_Where(Where):
-    return Select_Where(S_TABLE, Where)
+    return Select_Where(O_TABLE, Where)
 
 
 def Select_All(Table):
