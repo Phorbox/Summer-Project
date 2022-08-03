@@ -1,4 +1,4 @@
-from dataclasses import Field
+import sys
 from flask import Flask, jsonify, request, render_template, send_from_directory, redirect, url_for, session, flash
 from PY_Files.Login_User import Login
 from PY_Files.SQL_Queries import Push_To_User_Table, Push_To_ITEM_Table, Push_To_DISCOUNT_Table, Push_To_ORDER_Table
@@ -126,6 +126,5 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=8080) 
-    app.run(debug=True) 
-    # serve(app, host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=8080) 
+    # app.run(debug=True) 
